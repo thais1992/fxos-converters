@@ -1,11 +1,12 @@
 conversionApp.controller('MetricConversionController', function($scope) {
-
-	//initialization	
+	
 	$scope.isKmToMile = true;
+
 	$scope.$on('$viewContentLoaded', function() {
-		$scope.resetFields();
-		$scope.setCurrent();
+		$scope.setFieldVoid();
+		$scope.setValid();
 	});
+
 	
 	$scope.kmToMile = function() {
 		if($scope.km) {
@@ -25,70 +26,72 @@ conversionApp.controller('MetricConversionController', function($scope) {
 		}
 	};
 
-	$scope.celsiusToFahrenheit = function() {
-		if($scope.celsius) {
-			$scope.fahrenheit = $scope.celsius * 1.8 + 32;
+	$scope.celciusToFare = function() {
+		if($scope.celcius) {
+			$scope.fare = $scope.celcius * 1.8 + 32;
 		}
 		else {
-			$scope.celsius = '';
+			$scope.celcius = '';
 		}
 	};
 
-	$scope.fahrenheitToCelsius = function() {
-		if($scope.fahrenheit) {
-			$scope.celsius = ($scope.fahrenheit - 32) * (5/9);
+	$scope.fareToCelcius = function() {
+		if($scope.fare) {
+			$scope.celcius = ($scope.fare - 32) * (5/9);
 		}
 		else {
-			$scope.celsius = '';
+			$scope.celcius = '';
 		}
 	};
 
-	$scope.kelvinToCelsius = function() {
+	$scope.kelvinToCelcius = function() {
 		if($scope.kelvin) {
-			$scope.celsius = $scope.kelvin - 273;
+			$scope.celcius = $scope.kelvin - 273;
 		}
 		else {
-			$scope.celsius = '';
+			$scope.celcius = '';
 		}
 	};
 
+
+	//Controle de tela
 	$scope.setKmToMile = function() {
-		$scope.isKmToMile = $scope.setCurrent();
+		$scope.isKmToMile = $scope.setValid();
 	};
 
 	$scope.setMileToKm = function() {
-		$scope.isMileToKm = $scope.setCurrent();
+		$scope.isMileToKm = $scope.setValid();
 	};
 
-	$scope.setCelsiusToFahrenheit = function() {
-		$scope.isCelsiusToFahrenheit = $scope.setCurrent();
+	$scope.setCelciusToFare = function() {
+		$scope.isCelciusToFare = $scope.setValid();
+	};
+	$scope.setFareToCelcius = function() {
+		$scope.isFareToCelcius = $scope.setValid();
+	};
+	$scope.setKelvinToCelcius = function() {
+		$scope.isKelvinToCelcius = $scope.setValid();
 	};
 
-	$scope.setFahrenheitToCelsius = function() {
-		$scope.isFahrenheitToCelsius = $scope.setCurrent();
-	};
 
-	$scope.setKelvinToCelsius = function() {
-		$scope.isKelvinToCelsius = $scope.setCurrent();
-	};
-
-	$scope.resetFields = function() {
+	//Metodos auxiliares
+	$scope.setFieldVoid = function() {
 		$scope.km = '';
 		$scope.mile = '';
-		$scope.celsius = '';
-		$scope.fahrenheit = '';
+		$scope.celcius = '';
+		$scope.fare = '';
 		$scope.kelvin = '';
 
 	};
 
-	$scope.setCurrent = function() {
-		$scope.resetFields();
+	$scope.setValid = function() {
+		$scope.setFieldVoid();
 
 		$scope.isMileToKm =  false;
 		$scope.isKmToMile =  false;
-		$scope.isCelsiusToFahrenheit =  false;
-		$scope.isFahrenheitToCelsius =  false;
-		$scope.isKelvinToCelsius =  false;
+		$scope.isCelciusToFare =  false;
+		$scope.isFareToCelcius =  false;
+		$scope.isKelvinToCelcius =  false;
 
 		return true;
 	};
